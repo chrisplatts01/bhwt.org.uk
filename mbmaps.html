@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Map test</title>
+    <style>
+      #map {
+        height: 500px;
+        width: 100%;
+      }
+      .map { width: 60%; height: 500px; margin: 0 auto; background-color: #f7f7f7; }
+    </style>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+  </head>
+  <body>
+    <h1>MAPBOX</h1>
+    <div class="map">
+      <div id="map"></div>
+    </div>
+
+    <div id="actions">
+      <ul>
+        <li>Lookup postcode</li>
+        <li>Lookup address</li>
+        <li>Add marker</li>
+        <li>Goto marker</li>
+      </ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
+    <script>
+      mapboxgl.accessToken = 'pk.eyJ1IjoiY2hyaXNwbGF0dHMwMSIsImEiOiJjamY0Mm85emkwaGp5MzNxaHY1eGxlbzM5In0.xM7RmoAuJ_roWeac1XenOQ';
+      var map = new mapboxgl.Map({
+        id: 'mapbox.light',
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v10',
+        zoom: 13,
+        centre: [50.887, 0.586]
+      });
+</script>
+</head>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Map test</title>
+    <style>
+      #gmap, #osmap {
+        height: 500px;
+        width: 100%;
+      }
+      .map { width: 48%; float: left; padding: 0 1%; }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css">
+  </head>
+  <body>
+    <h1>Maps test</h1>
+
+    <!-- Google Map -->
+    <div class="map">
+      <h2>Google Maps</h2>
+      <div id="gmap"></div>
+    </div>
+
+    <!-- OSM Map -->
+    <div class="map">
+      <h2>Open Street Maps</h2>
+      <div id="osmap"></div>
+    </div>
+
+    <!-- Bing Map -->
+    <div class="map">
+      <h2>Bing Maps</h2>
+      <div id="bmap"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjp4XXx0Fb0GydYNpq8vZy0kNaa4tF9_Q&callback=initMap" async defer></script>
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" charset="utf-8"></script> -->
+    <script src='http://www.bing.com/api/maps/mapcontrol?key=AtTFmEKGPaoYam3oT2_Oe2-ymCs2oCTWgrMrG2e9nf7YpW6QY2f9XBbeqbMwEO8Z'></script>
+
+    <script>
+      var lat = 50.887;
+      var lng = 0.586;
+      var gLatLng = {lat: lat, lng: lng};
+      var oLatLng = [lat, lng];
+      var zoom = 15;
+      var hint = "Julia &amp; Chris";
+      var msg = "<p><b>Julia and Chris</b><br>11 Hazel Court<br>Stonestile Lane<br>Hastings<br>TN35 4PE</p>"
+
+      // Init Google Map
+      // var initMap = function () {
+      //
+      //   var map = new google.maps.Map(document.getElementById('gmap'), {
+      //     center: gLatLng,
+      //     zoom: zoom
+      //   });
+      //
+      //   var marker = new google.maps.Marker({
+      //     map: map,
+      //     position: gLatLng,
+      //     animation: google.maps.Animation.DROP,
+      //     title: hint
+      //   });
+      //
+      //   var infowindow = new google.maps.InfoWindow({
+      //     content: msg
+      //   });
+      //
+      //   marker.addListener('click', function() {
+      //     infowindow.open(map, marker);
+      //   });
+      // };
+
+      // Init Open Street Map
+      // var osmap = L.map('osmap').setView(oLatLng, zoom);
+      // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {})
+      //   .addTo(osmap);
+      //
+      // L.marker([50.887, 0.586]).addTo(osmap)
+      //   .bindPopup(msg);
+
+    // Init Bing Map -->
+      var loadMapScenario = function () {
+        var bmap = new Microsoft.Maps.Map(document.getElementById('bmap'), {});
+      };
+
+      document.addEventListener('DOMContentLoaded', function() {
+        loadMapScenario;
+      });
+    </script>
+</head>
+  </body>
+</html>

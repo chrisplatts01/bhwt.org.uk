@@ -1,0 +1,35 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Julia and Chris",
+        "amenity": "Family",
+        "popupContent": "<b>Julia &amp; Chris</b><br>11 Hazel Court, Stonestile Lane<br>Hastings<br>TN35 4PE"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.58588,
+          50.88685
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ben DeHavilland",
+        "amenity": "Friend",
+        "popupContent": "<b>Ben DeHavilland</b><br>Hurst Dene, Stonestile Lane<br>Hastings<br>TN35 4PD"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.5868,
+          50.8845
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Map test</title>
+    <style>
+      #gmap, #osmap {
+        height: 500px;
+        width: 100%;
+      }
+      .map { width: 60%; height: 500px; margin: 0 auto; background-color: #f7f7f7; }
+    </style>
+  </head>
+  <body>
+    <h1>Google Maps</h1>
+    <div class="map">
+      <div id="map"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjp4XXx0Fb0GydYNpq8vZy0kNaa4tF9_Q&callback=initMap" async defer></script>
+
+    <script>
+      var lat = 50.887;
+      var lng = 0.586;
+      var latLng = {lat: lat, lng: lng};
+      var zoom = 15;
+      var hint = "Julia &amp; Chris";
+      var msg = "<p><b>Julia and Chris</b><br>11 Hazel Court<br>Stonestile Lane<br>Hastings<br>TN35 4PE</p>"
+
+      // Init Google Map
+      function initMap() {
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: latLng,
+          zoom: zoom
+        });
+
+        // var marker = new google.maps.Marker({
+        //   map: map,
+        //   position: gLatLng,
+        //   animation: google.maps.Animation.DROP,
+        //   title: hint
+        // });
+        //
+        // var infowindow = new google.maps.InfoWindow({
+        //   content: msg
+        // });
+        //
+        // marker.addListener('click', function() {
+        //   infowindow.open(map, marker);
+        // });
+      }
+    </script>
+</head>
+  </body>
+</html>

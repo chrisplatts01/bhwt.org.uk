@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Map test</title>
+    <style>
+      #map {
+        height: 500px;
+        width: 100%;
+      }
+      .map { width: 60%; height: 500px; margin: 0 auto; background-color: #f7f7f7; }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css">
+  </head>
+  <body>
+    <h1>OPEN STREET MAP</h1>
+    <div class="map">
+      <div id="map"></div>
+    </div>
+
+    <div id="actions">
+      <ul>
+        <li>Lookup postcode</li>
+        <li>Lookup address</li>
+        <li>Add marker</li>
+        <li>Goto marker</li>
+      </ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js" charset="utf-8"></script>
+    <script src="scripts/leaflet.geocsv.js" charset="utf-8"></script>
+    <script>
+      $(function() {
+        var map;
+        var lat = 50.887;
+        var lng = 0.586;
+        var zoom = 17;
+        var minZoom = 7;
+        var maxZoom = 17;
+        var features;
+
+        var tileServer = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"; // OSM
+        // var tileServer = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"; // ESRI
+
+        // Define PinIcon class
+        var Pin = L.Icon.extend({
+          options: {
+            shadowUrl: 'leaf-shadow.png',
+            iconSize:     [25, 40],
+            shadowSize:   [42, 41],
+            iconAnchor:   [12, 40],
+            shadowAnchor: [21, 41],
+            popupAnchor:  [0, 0]
+          }
+        });
+
+        // Instantiate coloured PinIcons
+        var familyPin = new Pin({iconUrl: "/images/pins/red.png"});
+        var friendPin = new Pin({iconUrl: "/images/pins/blue.png"});
+        var neighbourPin = new Pin({iconUrl: "/images/pins/green.png"});
+
+        // var data = {
+        //   "type": "FeatureCollection",
+        //   "features": [
+        //     {
+        //       "type": "Feature",
+        //       "properties": {
+        //         "name": "Julia and Chris",
+        //         "amenity": "Family",
+        //         "popupContent": "<b>Julia &amp; Chris</b><br>11 Hazel Court, Stonestile Lane<br>Hastings<br>TN35 4PE"
+        //       },
+        //       "geometry": {
+        //         "type": "Point",
+        //         "coordinates": [
+        //           0.58588,
+        //           50.88685
+        //         ]
+        //       }
+        //     },
+        //     {
+        //       "type": "Feature",
+        //       "properties": {
+        //         "name": "Ben DeHavilland",
+        //         "amenity": "Friend",
+        //         "popupContent": "<b>Ben DeHavilland</b><br>Hurst Dene, Stonestile Lane<br>Hastings<br>TN35 4PD"
+        //       },
+        //       "geometry": {
+        //         "type": "Point",
+        //         "coordinates": [
+        //           0.5868,
+        //           50.8845
+        //         ]
+        //       }
+        //     }
+        //   ]
+        // }
+
+        // var markers = L.markerClusterGroup();
+
+        // Init map
+        map = L.map('map').setView([lat, lng], zoom);
+
+        // Add tile layer
+        L.tileLayer(tileServer, {
+	        attribution: "",
+          minZoom: minZoom,
+          maxZoom: maxZoom
+        }).addTo(map);
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+//         var data = L.geoCsv(null, {
+//         	onEachFeature: function (feature, layer) {
+//         		var popup = '';
+//         		for (var key in feature.properties) {
+//         			var title = data.getPropertyTitle(clave);
+//         			popup += '<b>'+title+'</b><br />'+feature.properties[key]+'<br /><br />';
+//         		}
+//         		layer.bindPopup(popup);
+//         	},
+//         	pointToLayer: function (feature, latlng) {
+//         		return L.marker(latlng, {
+//         			icon: familyPin
+//         		});
+//         	},
+//         	firstLineTitles: true
+//         });
+//
+//         $.ajax ({
+//         	type:'GET',
+//         	dataType:'text',
+//         	url:'data.csv',
+//           error: function() {
+//             alert('No data loaded');
+//           },
+//         	success: function(csv) {
+//             // var cluster = new L.MarkerClusterGroup();
+//         		data.addData(csv);
+//         		// cluster.addLayer(data);
+//         		// map.addLayer(cluster);
+//         		// map.fitBounds(cluster.getBounds());
+//             console.log(data);
+//         	}
+//         });
+//
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        // Add features
+        // features = L.geoJSON(data, {
+        //   onEachFeature: function (feature, featureLayer) {
+        //     console.log("Feature found: " + feature.properties.name);
+        //     if (feature.properties && feature.properties.popupContent) {
+        //       featureLayer.bindPopup(feature.properties.popupContent);
+        //     }
+        //   }
+        // }).addTo(map);
+        //
+        // markers.addLayer(features);
+        // map.addLayer(markers);
+        // map.fitBounds(features.getBounds())
+      });
+    </script>
+</head>
+  </body>
+</html>
