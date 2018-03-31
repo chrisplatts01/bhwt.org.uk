@@ -33,7 +33,7 @@
       <div id="controls">
         <form id="add-marker">
           <fieldset>
-            <legend>Add new marker at current location:</legend>
+            <legend>Add new marker:</legend>
             <label>Name: <input id="name" name="name" type="text"></label><br>
             <label>Type: <input id="type" name="type" type="text"></label><br>
             <label>Address: <input id="address" name="address" type="text"></label><br>
@@ -41,7 +41,7 @@
             <label>Postcode: <input id="postcode" name="postcode" type="text"></label><br>
             <label>Email: <input id="email" name="email" type="email"></label><br>
             <label>Telephone: <input id="telephone" name="telephone" type="text"></label><br>
-            <button type="button">Add marker</button>
+            <button id="geosearch" type="button">Add marker</button>
           </fieldset>
         </form>
       </div>
@@ -152,7 +152,17 @@
             + "<p><b>Email: </b>" + email + "<br>"
             + "<b>Tel: </b>" + telephone + "</p>";
 
-          console.log(popupContent);
+          $("#geosearch").click(function () {
+            var postcode = $("#postcode").val();
+            var geocode = "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&dedupe=1&email=chris@virelai.co.uk&countrycodes=gb&q=" + postcode.replace(/\s+/g, "+");
+
+            $.getJSON(geocode, function(data) {
+              var latlng = [data[0].lat, data[0].lon];
+              var marker = L.marker(latlng);
+              marker.addTo(map);
+              map.setView(latlng, 16);
+            });
+          });
         });
       });
     </script>
